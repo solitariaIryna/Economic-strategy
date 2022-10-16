@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BuildController : MonoBehaviour
-{
+public class BuildController : MonoBehaviour{
     [SerializeField] private List<Build> _buildList;
+    
     public Action<Resource> OnGiveResource;
     private TickResource _tickResource;
 
@@ -28,13 +28,10 @@ public class BuildController : MonoBehaviour
 
 
 
-    public TickResource ReturnResources()
-    {
+    public TickResource ReturnResources(){
         _tickResource.Clear();
-        for (int i = 0; i < _buildList.Count; i++)
-        {
+        for (int i = 0; i < _buildList.Count; i++){
             _tickResource.AddResource(_buildList[i].GetResource());
-
         }
         return _tickResource;
     }

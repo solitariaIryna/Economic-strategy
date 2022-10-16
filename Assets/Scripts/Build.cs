@@ -2,8 +2,8 @@
 using System;
 using UnityEngine;
 
-public class Build : MonoBehaviour
-{
+public class Build : MonoBehaviour{
+    [SerializeField] private CraftSO _craftSO;
     [SerializeField] private Resources _resources;
     private Resource _resource;
     [SerializeField] private int _countTick;
@@ -11,14 +11,12 @@ public class Build : MonoBehaviour
     private float _timerCreateResource;
     public Action<Resource> OnCreateResource; 
     
-    private void CreateValueResource()
-    {
-        _resource = new Resource(_resources, _countTick);
+    private void CreateValueResource(){
+        _resource = new Resource(_craftSO.CreateResource[0].Resources, _countTick);
         _timerCreateResource = 0f;
     }
 
-    public virtual void Initialize()
-    {
+    public virtual void Initialize(){
         CreateValueResource();
         
     }

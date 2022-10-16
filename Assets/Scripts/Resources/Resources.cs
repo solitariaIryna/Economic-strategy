@@ -3,5 +3,6 @@
     Wood,
     Gold,
     Food,
-    Metal
+    Metal,
+    None
 }

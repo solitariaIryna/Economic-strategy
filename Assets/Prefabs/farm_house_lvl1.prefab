@@ -57,6 +57,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -81,6 +82,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!95 &95997259328882180
 Animator:
   serializedVersion: 3
@@ -112,5 +114,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43d5da4a6eeb6c6459c003af9e58e038, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _craftSO: {fileID: 11400000, guid: f81f205e72f1fdc42b8a3353bdbd3c88, type: 2}
   _resources: 0
   _countTick: 5
+  _timeCreateResource: 0
