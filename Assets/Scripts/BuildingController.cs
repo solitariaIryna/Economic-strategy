@@ -12,6 +12,7 @@ public class BuildingController : MonoBehaviour
         building.Initialize();
         building.transform.position = _cell.PointCenter.position;
         _cell.IsBuild = true;
+        _cell.SetBuild(building);
         OnAddBuildList?.Invoke(building);
 
     }

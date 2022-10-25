@@ -6,8 +6,14 @@ using UnityEngine;
 public class InputController : MonoBehaviour
 {
     [SerializeField] private Camera _camera;
+    
     [SerializeField] private Cell _cell;
+    [SerializeField] private Build _selectedBuild;
+    
     public Action<Cell> OnChooseCell;
+    
+    public Action<Build> OnChooseBuild;
+
     private bool _permisionOnRaycast = true;
     private Vector3 CalculationDirectionToPoint()
     {
@@ -45,6 +51,12 @@ public class InputController : MonoBehaviour
                 _tempcell.Activate();
                 OnChooseCell?.Invoke(_cell);
             }
+            else
+            {
+                Debug.Log("Build:" + _cell.Build.name);
+                OnChooseBuild?.Invoke(_cell.Build);
+                _selectedBuild = _cell.Build;
+            }
             
             
             
@@ -80,5 +92,5 @@ public class InputController : MonoBehaviour
         _permisionOnRaycast = state;
     }
 
-
+    public Build GetSelectedBuild() => _selectedBuild;
 }

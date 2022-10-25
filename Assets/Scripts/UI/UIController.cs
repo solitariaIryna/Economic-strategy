@@ -6,8 +6,10 @@ using UnityEngine;
 public class UIController : MonoBehaviour
 {
     [SerializeField] private UIControllerPanelResource _panelResource;
+    [SerializeField] private UpdatePanelUI _updatePanelUI;
     [SerializeField] private UIBuildPanel _buildUI;
     public Action<TypeBuilds> OnBuilingType;
+
     public void Initialize(List<BuildsSO> builds)
     {
         _buildUI.InitializeButton(builds);
@@ -30,5 +32,10 @@ public class UIController : MonoBehaviour
     public void UpdateValueResource(){
         _panelResource.UpdateValueResource();
     }
+
+    public void OpenUpdatePanel(Build build){
+        _updatePanelUI.OpenPanel(build);
+    }
+
     
 }

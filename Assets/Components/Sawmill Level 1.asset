@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Sawmill Level 1
   m_EditorClassIdentifier: 
   _nameUpdate: Level 1
-  _image: {fileID: 0}
+  _image: {fileID: 21300000, guid: d5bfbe72cfa65414d80428d2fb98b16b, type: 3}
   _settingUpdates:
   - _typeEffectUpdate: 0
     _value: 10

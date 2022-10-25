@@ -114,7 +114,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43d5da4a6eeb6c6459c003af9e58e038, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _updateBuilds:
+  - {fileID: 11400000, guid: 2d1ff41604265d74686d16b1df9777ad, type: 2}
   _craftSO: {fileID: 11400000, guid: f81f205e72f1fdc42b8a3353bdbd3c88, type: 2}
   _resources: 0
   _countTick: 5
-  _timeCreateResource: 0
+  _timeCreateResource: 1

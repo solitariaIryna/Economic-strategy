@@ -16,7 +16,7 @@ public class UpdateBuildSO : ScriptableObject{
     public int LevelUpdate { get => _levelUpdate; }
     public string NameUpdate { get => _nameUpdate;}
     public Sprite Image { get => _image; }
-    public bool OpenUpdate { get => _openUpdate; }
+    public bool OpenUpdate { get => _openUpdate; set => _openUpdate = value; }
     public bool PermissionOpenUpdate { get => _permissionOpenUpdate; }
     public List<SettingUpdate> SettingUpdates { get => _settingUpdates; }
     public int PriceUpdate { get => _priceUpdate; }

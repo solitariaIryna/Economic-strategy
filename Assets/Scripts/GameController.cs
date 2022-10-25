@@ -14,6 +14,7 @@ public class GameController : MonoBehaviour
     private void Start()
     {
         _inputController.OnChooseCell += SetCell;
+        _inputController.OnChooseBuild += SetBuild;
         _uiController.OnBuilingType += SetTypeBuilding;
         _buildingController.OnAddBuildList += NewBuildingBuild;
 
@@ -24,6 +25,7 @@ public class GameController : MonoBehaviour
     private void OnDisable()
     {
         _inputController.OnChooseCell -= SetCell;
+        _inputController.OnChooseBuild -= SetBuild;
         _buildingController.OnAddBuildList -= NewBuildingBuild;
         _uiController.OnBuilingType -= SetTypeBuilding;
     }
@@ -33,6 +35,12 @@ public class GameController : MonoBehaviour
         _uiController.ActivePanelButtonBuild();
         _inputController.StatePermisionRaycast(false);
     }
+
+    private void SetBuild(Build build){
+        _uiController.OpenUpdatePanel(build);
+    }
+
+
     private void SetTypeBuilding(TypeBuilds typeBuilds)
     {
        _buildingController.BuildBuilding(_buildStore.GetModelBuild(typeBuilds));
