@@ -31,19 +31,25 @@ public class Storage : MonoBehaviour
 
     }
 
-    public void AddResources(TickResource tickResource)
-    {
-        for( int i = 0; i < tickResource.GetCountResource(); i++)
-        {
-            for(int j = 0; j < _resources.Count; j++)
-            {
-                if (tickResource.GetResourceToIndex(i).Resources == _resources[j].Resources)
-                {
-                    _resources[j].Value += tickResource.GetResourceToIndex(i).Value;
-                }
+    public void AddResources(Resource resource){
+        for(int i = 0; i < _resources.Count; i++){
+            if(resource._resources == _resources[i]._resources){
+                _resources[i].Value += resource.Value;
             }
         }
     }
+
+    //for( int i = 0; i < tickResource.GetCountResource(); i++)
+    //{
+    //    for(int j = 0; j < _resources.Count; j++)
+    //    {
+    //        if (tickResource.GetResourceToIndex(i).Resources == _resources[j].Resources)
+    //        {
+    //            _resources[j].Value += tickResource.GetResourceToIndex(i).Value;
+    //        }
+    //    }
+    //}
+
 
     public int GetCountResource()
     {

@@ -14,7 +14,18 @@ public class InputController : MonoBehaviour
     
     public Action<Build> OnChooseBuild;
 
-    private bool _permisionOnRaycast = true;
+    private bool _permissionOnRaycast = true;
+
+    private void Start(){
+        EventManager.OnPermissionRaycastInputController += StatePermisionRaycast;
+    }
+
+    private void OnDisable(){
+        EventManager.OnPermissionRaycastInputController -= StatePermisionRaycast;
+    }
+
+
+
     private Vector3 CalculationDirectionToPoint()
     {
 
@@ -36,60 +47,41 @@ public class InputController : MonoBehaviour
         return world;
     }
 
-    private void RaycastPoint(Vector3 direction)
-    {
-        //Debug.Log("Direction:" + direction);
+    private void RaycastPoint(Vector3 direction){
         RaycastHit hit;
-        // Does the ray intersect any objects excluding the player layer
-        if (Physics.Raycast(transform.position, direction, out hit, Mathf.Infinity))
-        {
-            //Debug.DrawRay(transform.position, direction * hit.distance, Color.yellow);
+        if (Physics.Raycast(transform.position, direction, out hit, Mathf.Infinity)){
             Cell _tempcell = hit.collider.GetComponent<Cell>();
-            if (_tempcell.IsBuild == false)
-            {
+            if (_tempcell.IsBuild == false){
                 CheckCell(_tempcell);
                 _tempcell.Activate();
                 OnChooseCell?.Invoke(_cell);
             }
-            else
-            {
+            else{
                 Debug.Log("Build:" + _cell.Build.name);
                 OnChooseBuild?.Invoke(_cell.Build);
                 _selectedBuild = _cell.Build;
             }
-            
-            
-            
-            //Debug.DrawRay(transform.position, direction * 1000, Color.green, 100);
         }
     }
 
-    private void CheckCell(Cell newCell)
-    {
-
+    private void CheckCell(Cell newCell){
         if (_cell == null)
-        {
             _cell = newCell;
-        }
-        
-        if (newCell != _cell)
-        {
+
+        if (newCell != _cell){ 
             _cell.DisActivate();
             _cell = newCell;
         }
     }
     
-    void Update()
-    {
-        if (Input.GetMouseButtonDown(0) && _permisionOnRaycast){
-            
+    void Update(){
+        if (Input.GetMouseButtonDown(0) && _permissionOnRaycast){   
             RaycastPoint(CalculationDirectionToPoint());
         }
     }
 
-    public void StatePermisionRaycast(bool state)
-    {
-        _permisionOnRaycast = state;
+    public void StatePermisionRaycast(bool state){
+        _permissionOnRaycast = state;
     }
 
     public Build GetSelectedBuild() => _selectedBuild;

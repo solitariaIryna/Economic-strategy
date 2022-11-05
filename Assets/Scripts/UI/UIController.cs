@@ -10,22 +10,21 @@ public class UIController : MonoBehaviour
     [SerializeField] private UIBuildPanel _buildUI;
     public Action<TypeBuilds> OnBuilingType;
 
-    public void Initialize(List<BuildsSO> builds)
-    {
+    public void Initialize(List<BuildsSO> builds){
         _buildUI.InitializeButton(builds);
         _buildUI.OnBuilingType += BuildingType;
-    }
-    private void OnDisable()
-    {
-        _buildUI.OnBuilingType -= BuildingType;
+        EventManager.OnCreateResource += UpdateValueResource;
     }
 
-    public void BuildingType(TypeBuilds typeBuilds)
-    {
+    private void OnDisable(){
+        _buildUI.OnBuilingType -= BuildingType;
+        EventManager.OnCreateResource -= UpdateValueResource;
+    }
+
+    public void BuildingType(TypeBuilds typeBuilds){
         OnBuilingType?.Invoke(typeBuilds);
     }
-    public void ActivePanelButtonBuild()
-    {
+    public void ActivePanelButtonBuild(){
         _buildUI.ActivePanelButton();
     }
 

@@ -6,7 +6,7 @@ public class Cell : MonoBehaviour
     [SerializeField] private Build _build;
     public Transform PointCenter { get => _pointCenter;}
     [SerializeField] private MeshRenderer meshRenderer;
-    private bool _isBuild;
+    [SerializeField] private bool _isBuild;
     public bool IsBuild { get => _isBuild; set => _isBuild = value; }
     public Build Build { get => _build; set => _build = value; }
 

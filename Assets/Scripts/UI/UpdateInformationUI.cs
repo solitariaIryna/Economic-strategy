@@ -34,6 +34,7 @@ public class UpdateInformationUI : MonoBehaviour{
         _currentUpdate.OpenUpdate = true;
         _currentUpdateBuild.UpdateOpen(_currentUpdate);
         ClosePanel();
+        EventManager.PermissionRaycastInputController(true);
     }
 
     private void OpenPanel(){

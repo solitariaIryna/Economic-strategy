@@ -16,6 +16,18 @@ public class BuildController : MonoBehaviour{
         _tickResource.Initialize();
     }
 
+    private void Update(){
+        UdpateAllBuild();
+    }
+
+
+    private void UdpateAllBuild(){
+        for (int i = 0; i < _buildList.Count; i++){
+            _buildList[i].UpdateBuild();
+        }
+    }
+
+
     public void AddBuild(Build build)
     {
         _buildList.Add(build);
@@ -27,6 +39,7 @@ public class BuildController : MonoBehaviour{
     }
 
 
+    
 
     public TickResource ReturnResources(){
         _tickResource.Clear();

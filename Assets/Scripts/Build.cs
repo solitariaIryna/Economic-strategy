@@ -3,6 +3,8 @@ using System;
 using UnityEngine;
 
 public class Build : MonoBehaviour{
+    [SerializeField] private string _name;
+    [SerializeField] private UIBuildController _UIBuildController;
     [SerializeField] private UpdateBuildSO[] _updateBuilds;
     [SerializeField] private UpdateBuildSO _selectedUpdateBuild;
     [SerializeField] private CraftSO _craftSO;
@@ -14,12 +16,8 @@ public class Build : MonoBehaviour{
     public Action<Resource> OnCreateResource;
     [SerializeField] private bool _isCheckValueResource;
 
-    public void Update(){
-        if(_isCheckValueResource)
-        {
-            _isCheckValueResource = false;
-            Debug.Log("Value:" + _resource.Value);
-        }
+    public void UpdateBuild(){
+        CreateResource();
     }
 
 
@@ -31,26 +29,31 @@ public class Build : MonoBehaviour{
 
     public virtual void Initialize(){
         CreateValueResource();
-        
+        _UIBuildController.SetNameBuild(_name);
+        _UIBuildController.SetResourceData(_craftSO.ImageResource, _countTick);
+        _UIBuildController.SetProgressBarData(_timeCreateResource);
     }
     public virtual Resource GetResource(){
         return _resource;
     }
 
     public virtual void CreateResource() {
-        if (_timerCreateResource <= _timeCreateResource)
+        if (_timerCreateResource <= _timeCreateResource){
             _timerCreateResource += Time.deltaTime;
-        else
-        {
+        }    
+        else{
             _timerCreateResource = 0f;
-            OnCreateResource?.Invoke(_resource);
+            Storage.instance.AddResources(_resource);
+            EventManager.CreateResource();
+            //OnCreateResource?.Invoke(_resource);
         }
-
+        _UIBuildController.ChangeProgressCreateResource(_timerCreateResource);
     }
 
     public virtual void UpdateOpen(UpdateBuildSO updateBuildSO){
         _selectedUpdateBuild = updateBuildSO;
         CalculationResource();
+        _UIBuildController.SetUpgradeData(_selectedUpdateBuild.Image, _selectedUpdateBuild.LevelUpdate);
     }
 
     public virtual void CalculationResource(){
@@ -63,9 +66,8 @@ public class Build : MonoBehaviour{
                 _timeCreateResource = _timeCreateResource - (_timeCreateResource / 100f) * _selectedUpdateBuild.SettingUpdates[i]._value;
             }
         }
-
-      
-      
+        _UIBuildController.SetResourceData(_craftSO.ImageResource, _resource.Value);
+        _UIBuildController.SetProgressBarData(_timeCreateResource);
     }
 
     

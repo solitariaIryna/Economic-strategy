@@ -30,10 +30,8 @@ public class UIBuildPanel : MonoBehaviour
         DisablePanelButton();
     }
 
-    public void InitializeButton(List<BuildsSO> builds)
-    {
-        for (int i = 0; i < builds.Count; i++)
-        {
+    public void InitializeButton(List<BuildsSO> builds){
+        for (int i = 0; i < builds.Count; i++){
             buildUIList[i].InitializationPanel(builds[i]);
         }
     }

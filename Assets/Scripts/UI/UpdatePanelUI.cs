@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class UpdatePanelUI : MonoBehaviour{
-    [SerializeField] private Image _panel;
+    [SerializeField] private RectTransform _panel;
     [SerializeField] private UpdateInformationUI[] _updateInformationUIs;
     
     private void Start(){
@@ -14,32 +14,25 @@ public class UpdatePanelUI : MonoBehaviour{
     }
 
     private void OnDisable(){
-        for (int i = 0; i < _updateInformationUIs.Length; i++)
-        {
+        for (int i = 0; i < _updateInformationUIs.Length; i++){
             _updateInformationUIs[i].OnUpdateBuild -= UpdateBuild;
         }
     }
 
-
-
-
-
     public void OpenPanel(Build build){
-        _panel.enabled = true;
+        _panel.localScale = Vector3.one;
         SetOpenBuildUpdate(build);
     }
 
     private void ClosePanel(){
-        _panel.enabled = false;
+        _panel.localScale = Vector3.zero;
     }
-
 
     private void SetOpenBuildUpdate(Build build){
         for(int i = 0; i < build.UpdateBuilds.Length; i++){
             _updateInformationUIs[i].InitializeUpdateInformation(build.UpdateBuilds[i], build);
         }
     }
-
 
     private void UpdateBuild(UpdateBuildSO updateBuildSO)
     {

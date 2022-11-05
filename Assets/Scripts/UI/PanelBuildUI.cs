@@ -12,8 +12,7 @@ public class PanelBuildUI : MonoBehaviour
     [SerializeField] private TypeBuilds _type;
     public Action<TypeBuilds> OnClickButton;
 
-    public void InitializationPanel(BuildsSO buildsSO)
-    {
+    public void InitializationPanel(BuildsSO buildsSO){
         _nameBuild.text = buildsSO.NameModel;
         _costBuild.text = buildsSO.Cost.ToString();
         _image.sprite = buildsSO.Sprite;

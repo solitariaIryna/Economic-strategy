@@ -11,8 +11,7 @@ public class GameController : MonoBehaviour
     [SerializeField] private Storage _storage;
     [SerializeField] private BuildController _buildController;
     private float _timer;
-    private void Start()
-    {
+    private void Start(){
         _inputController.OnChooseCell += SetCell;
         _inputController.OnChooseBuild += SetBuild;
         _uiController.OnBuilingType += SetTypeBuilding;
@@ -38,29 +37,26 @@ public class GameController : MonoBehaviour
 
     private void SetBuild(Build build){
         _uiController.OpenUpdatePanel(build);
+        _inputController.StatePermisionRaycast(false);
     }
 
 
-    private void SetTypeBuilding(TypeBuilds typeBuilds)
-    {
-       _buildingController.BuildBuilding(_buildStore.GetModelBuild(typeBuilds));
+    private void SetTypeBuilding(TypeBuilds typeBuilds){
+        _buildingController.BuildBuilding(_buildStore.GetModelBuild(typeBuilds));
         _inputController.StatePermisionRaycast(true);
         
     }
-    private void Update()
-    {
-        if (_timer <= 1f)
-        {
-            _timer += Time.deltaTime;
-        }
-        else
-        {
-            Storage.instance.AddResources(_buildController.ReturnResources());
-            _uiController.UpdateValueResource();
-            _timer = 0f;
+    //private void Update(){
+    //    if (_timer <= 1f){
+    //        _timer += Time.deltaTime;
+    //    }
+    //    else{
+    //        Storage.instance.AddResources(_buildController.ReturnResources());
+    //        _uiController.UpdateValueResource();
+    //        _timer = 0f;
 
-        }
-    }
+    //    }
+    //}
 
     private void NewBuildingBuild(Build building)
     {
