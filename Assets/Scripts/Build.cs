@@ -33,6 +33,7 @@ public class Build : MonoBehaviour{
 
     public virtual void Initialize(){
         CreateValueResource();
+        _selectedUpdateBuild = Instantiate(_selectedUpdateBuild);
         _UIBuildController.SetNameBuild(_name);
         _UIBuildController.SetResourceData(_craftSO.ImageResource, _countTick);
         _UIBuildController.SetProgressBarData(_timeCreateResource);
@@ -51,14 +52,15 @@ public class Build : MonoBehaviour{
             Storage.instance.AddResources(_resource);
             EventManager.CreateResource();
             EventManager.AddItemToInventory(_itemCreate);
-            _itemCreate.Value = _countTick;
+            _itemCreate.Value = _itemCreate.Value;
             //OnCreateResource?.Invoke(_resource);
         }
         _UIBuildController.ChangeProgressCreateResource(_timerCreateResource);
     }
 
-    public virtual void UpdateOpen(UpdateBuildSO updateBuildSO){
-        _selectedUpdateBuild = updateBuildSO;
+    public virtual void UpdateOpen(){
+
+        _selectedUpdateBuild.UpdateUP();
         CalculationResource();
         _UIBuildController.SetUpgradeData(SelectedUpdateBuild.Image, SelectedUpdateBuild.LevelUpdate);
     }
@@ -74,7 +76,7 @@ public class Build : MonoBehaviour{
                 _timeCreateResource = _timeCreateResource - (_timeCreateResource / 100f) * SelectedUpdateBuild.SettingUpdates[i]._value;
             }
         }
-        _UIBuildController.SetResourceData(_craftSO.ImageResource, _resource.Value);
+        _UIBuildController.SetResourceData(_craftSO.ImageResource, _itemCreate.Value);
         _UIBuildController.SetProgressBarData(_timeCreateResource);
     }
 

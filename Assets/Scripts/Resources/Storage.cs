@@ -16,7 +16,7 @@ public class Storage : MonoBehaviour
     {
         _resources = new List<Resource>();
         Resource wood = new Resource(Resources.Wood, 0);
-        Resource gold = new Resource(Resources.Gold, 200);
+        Resource gold = new Resource(Resources.Gold, 50);
         Resource food = new Resource(Resources.Food, 0);
         Resource metal = new Resource(Resources.Metal, 0);
 
