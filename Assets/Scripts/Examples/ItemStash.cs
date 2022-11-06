@@ -11,16 +11,16 @@ public class ItemStash : ItemContainer
 
 	private Character character;
 
-	protected override void OnValidate()
-	{
-		if (itemsParent != null)
-			itemsParent.GetComponentsInChildren(includeInactive: true, result: ItemSlots);
+	//protected override void OnValidate()
+	//{
+	//	if (itemsParent != null)
+	//		itemsParent.GetComponentsInChildren(includeInactive: true, result: ItemSlots);
 
-		if (spriteRenderer == null)
-			spriteRenderer = GetComponentInChildren<SpriteRenderer>(includeInactive: true);
+	//	if (spriteRenderer == null)
+	//		spriteRenderer = GetComponentInChildren<SpriteRenderer>(includeInactive: true);
 
-		spriteRenderer.enabled = false;
-	}
+	//	spriteRenderer.enabled = false;
+	//}
 
 	protected override void Awake()
 	{

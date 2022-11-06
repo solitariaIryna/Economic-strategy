@@ -9,13 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 845685689e4dd2e4395cdd299a9b9bfa, type: 3}
-  m_Name: Metal
+  m_Script: {fileID: 11500000, guid: 31f098b1f861fd94bb6f09f84fe87404, type: 3}
+  m_Name: Food
   m_EditorClassIdentifier: 
-  _imageResource: {fileID: 21300000, guid: d5272406438dcda4a8e6c733eda5852b, type: 3}
-  _useResource:
-  - _resources: 4
-    _value: 0
-  _createResource:
-  - _resources: 3
-    _value: 0
+  id: 97dcd5de1595a1641a8fba848d8a26b9
+  ItemName: Food
+  Icon: {fileID: 21300000, guid: 5b91e551d40769a4d9146a0812852ddb, type: 3}
+  Value: 5
+  MaximumStacks: 999
+  TypeItem: 0
+  Price: 3

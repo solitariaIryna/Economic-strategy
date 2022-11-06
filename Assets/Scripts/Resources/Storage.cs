@@ -16,7 +16,7 @@ public class Storage : MonoBehaviour
     {
         _resources = new List<Resource>();
         Resource wood = new Resource(Resources.Wood, 0);
-        Resource gold = new Resource(Resources.Gold, 0);
+        Resource gold = new Resource(Resources.Gold, 200);
         Resource food = new Resource(Resources.Food, 0);
         Resource metal = new Resource(Resources.Metal, 0);
 
@@ -26,9 +26,12 @@ public class Storage : MonoBehaviour
         _resources.Add(metal);
     }
 
-    public void AddResource(Resource resource)
-    {
-
+    public void AddResource(Resources resourceType, int count){
+        for (int i = 0; i < _resources.Count; i++){
+            if (_resources[i]._resources == resourceType){
+                _resources[i].Value += count;
+            }
+        }
     }
 
     public void AddResources(Resource resource){
@@ -67,4 +70,31 @@ public class Storage : MonoBehaviour
         }
         return null; ;
     }
+
+    public int GetCountResource(Resources type){
+        for(int i = 0; i < _resources.Count; i++){
+            if (_resources[i].Resources == type)
+                return _resources[i].Value;
+        }
+
+        return 0;
+    }
+
+    public bool TakeResource(Resources type, int count){
+        for(int i = 0; i < _resources.Count; i++){
+            if(_resources[i].Resources == type){
+                if (_resources[i].Value >= count)
+                {
+                    _resources[i].Value -= count;
+                    EventManager.UpdateUIResource();
+                    return true;
+                }
+                else
+                    return false;
+            }
+        }
+        return false;
+    }
+
+
 }

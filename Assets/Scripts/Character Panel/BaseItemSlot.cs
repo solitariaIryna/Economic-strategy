@@ -17,7 +17,7 @@ public class BaseItemSlot : MonoBehaviour, IPointerClickHandler, IPointerEnterHa
 	protected Color normalColor = Color.white;
 	protected Color disabledColor = new Color(1, 1, 1, 0);
 
-	protected Item _item;
+	[SerializeField] protected Item _item;
 	public Item Item {
 		get { return _item; }
 		set {
@@ -31,12 +31,6 @@ public class BaseItemSlot : MonoBehaviour, IPointerClickHandler, IPointerEnterHa
 				image.sprite = _item.Icon;
 				image.color = normalColor;
 			}
-
-			if (isPointerOver)
-			{
-				OnPointerExit(null);
-				OnPointerEnter(null);
-			}
 		}
 	}
 
@@ -46,7 +40,7 @@ public class BaseItemSlot : MonoBehaviour, IPointerClickHandler, IPointerEnterHa
 		set {
 			_amount = value;
 			if (_amount < 0) _amount = 0;
-			if (_amount == 0 && Item != null) Item = null;
+			//if (_amount == 0 && Item != null) Item = null;
 
 			if (amountText != null)
 			{
@@ -70,14 +64,14 @@ public class BaseItemSlot : MonoBehaviour, IPointerClickHandler, IPointerEnterHa
 
 	protected virtual void OnValidate()
 	{
-		if (image == null)
-			image = GetComponent<Image>();
+		//if (image == null)
+		//	image = GetComponent<Image>();
 
-		if (amountText == null)
-			amountText = GetComponentInChildren<Text>();
+		//if (amountText == null)
+		//	amountText = GetComponentInChildren<Text>();
 
-		Item = _item;
-		Amount = _amount;
+		//Item = _item;
+		//Amount = _amount;
 	}
 
 	protected virtual void OnDisable()
@@ -94,6 +88,10 @@ public class BaseItemSlot : MonoBehaviour, IPointerClickHandler, IPointerEnterHa
 			if (OnRightClickEvent != null)
 				OnRightClickEvent(this);
 		}
+
+		if(_item != null){
+			EventManager.ChooseItem(_item);
+        }
 	}
 
 	public void OnPointerEnter(PointerEventData eventData)

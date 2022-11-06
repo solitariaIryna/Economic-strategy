@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class UIBuildPanel : MonoBehaviour
 {
+  
     [SerializeField] private List<PanelBuildUI> buildUIList;
     [SerializeField] private RectTransform _panelBottom;
     public Action<TypeBuilds> OnBuilingType;
@@ -44,5 +45,6 @@ public class UIBuildPanel : MonoBehaviour
     public void DisablePanelButton()
     {
         _panelBottom.localScale = Vector3.zero;
+        EventManager.PermissionRaycastInputController(true);
     }
 }

@@ -14,11 +14,14 @@ public class UIController : MonoBehaviour
         _buildUI.InitializeButton(builds);
         _buildUI.OnBuilingType += BuildingType;
         EventManager.OnCreateResource += UpdateValueResource;
+        EventManager.OnUpdateUIResource += UpdateValueResource;
+        UpdateValueResource();
     }
 
     private void OnDisable(){
         _buildUI.OnBuilingType -= BuildingType;
         EventManager.OnCreateResource -= UpdateValueResource;
+        EventManager.OnUpdateUIResource -= UpdateValueResource;
     }
 
     public void BuildingType(TypeBuilds typeBuilds){

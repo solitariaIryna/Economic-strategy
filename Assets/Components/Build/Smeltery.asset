@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 37aabbcc4b20cf44c80788b0dac51209, type: 3}
-  m_Name: Farm
+  m_Name: Smeltery
   m_EditorClassIdentifier: 
-  _nameModel: Farm
-  _build: {fileID: -7119601224959234360, guid: 21d42ff46295d4a4da6da6d0d1b33631, type: 3}
-  _cost: 10
-  _sprite: {fileID: 21300000, guid: a32d1840a3f0b2948bc6b161546f31b0, type: 3}
-  _typeBuilds: 0
-  _resources: 0
+  _nameModel: Smeltery
+  _build: {fileID: 8348382247311008656, guid: 6bf6af703fad8924dbb1a8e8d943ce93, type: 3}
+  _cost: 200
+  _sprite: {fileID: 21300000, guid: d5f3c2197d2fbf34cb356051904cfb54, type: 3}
+  _typeBuilds: 2
+  _resources: 3

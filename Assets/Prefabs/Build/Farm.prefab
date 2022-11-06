@@ -469,16 +469,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _name: Farm
+  _itemCreate: {fileID: 11400000, guid: 97dcd5de1595a1641a8fba848d8a26b9, type: 2}
   _UIBuildController: {fileID: 1537260250145702275}
   _updateBuilds: []
-  _selectedUpdateBuild: {fileID: 0}
+  _selectedUpdateBuild: {fileID: 11400000, guid: 2d1ff41604265d74686d16b1df9777ad,
+    type: 2}
   _craftSO: {fileID: 11400000, guid: e05a0c55a4c24ff4bb17816739846589, type: 2}
-  _resources: 0
+  _resources: 2
   _resource:
-    _resources: 0
+    _resources: 2
     _value: 0
   _countTick: 5
-  _timeCreateResource: 1
+  _timeCreateResource: 3
   _isCheckValueResource: 0
 --- !u!1 &4220334615828809876
 GameObject:
@@ -825,16 +827,16 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6312299057396601522}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0}
+  m_LocalPosition: {x: 0, y: 0, z: -2.8422e-11}
   m_LocalScale: {x: 1.6766366, y: 1.6766367, z: 1.6766367}
   m_Children: []
   m_Father: {fileID: 1201897296048552950}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 26, y: 33.6}
-  m_SizeDelta: {x: 28.14, y: 27.79}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0.0033607483, y: 0.0008735657}
+  m_SizeDelta: {x: -40.35, y: -40.356}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3652482146191753231
 CanvasRenderer:

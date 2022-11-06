@@ -50,6 +50,7 @@ public class InputController : MonoBehaviour
     private void RaycastPoint(Vector3 direction){
         RaycastHit hit;
         if (Physics.Raycast(transform.position, direction, out hit, Mathf.Infinity)){
+            Debug.Log(hit.collider.name);
             Cell _tempcell = hit.collider.GetComponent<Cell>();
             if (_tempcell.IsBuild == false){
                 CheckCell(_tempcell);
@@ -57,9 +58,9 @@ public class InputController : MonoBehaviour
                 OnChooseCell?.Invoke(_cell);
             }
             else{
-                Debug.Log("Build:" + _cell.Build.name);
-                OnChooseBuild?.Invoke(_cell.Build);
-                _selectedBuild = _cell.Build;
+                Debug.Log("Build:" + _tempcell.Build.name);
+                OnChooseBuild?.Invoke(_tempcell.Build);
+                _selectedBuild = _tempcell.Build;
             }
         }
     }

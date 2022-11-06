@@ -28,7 +28,6 @@ public class UIBuildController : MonoBehaviour{
     }
 
     public void SetUpgradeData(Sprite upgrade, int levelUpgrade){
-        _upgradeBuildImage.sprite = upgrade;
         _upgradeBuildLevel.text = levelUpgrade.ToString();
     } 
 }

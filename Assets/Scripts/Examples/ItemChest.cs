@@ -26,23 +26,23 @@ public class ItemChest : MonoBehaviour
 
 	private void Update()
 	{
-		if (isInRange && !isEmpty && Input.GetKeyDown(itemPickupKeyCode))
-		{
-			Item itemCopy = item.GetCopy();
-			if (inventory.AddItem(itemCopy))
-			{
-				amount--;
-				if (amount == 0)
-				{
-					isEmpty = true;
-					spriteRenderer.color = emptyColor;
-				}
-			}
-			else
-			{
-				itemCopy.Destroy();
-			}
-		}
+		//if (isInRange && !isEmpty && Input.GetKeyDown(itemPickupKeyCode))
+		//{
+		//	Item itemCopy = item.GetCopy();
+		//	if (inventory.AddItem(itemCopy))
+		//	{
+		//		amount--;
+		//		if (amount == 0)
+		//		{
+		//			isEmpty = true;
+		//			spriteRenderer.color = emptyColor;
+		//		}
+		//	}
+		//	else
+		//	{
+		//		itemCopy.Destroy();
+		//	}
+		//}
 	}
 
 	private void OnTriggerEnter(Collider other)

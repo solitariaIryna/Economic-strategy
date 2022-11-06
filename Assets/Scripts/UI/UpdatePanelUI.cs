@@ -24,14 +24,13 @@ public class UpdatePanelUI : MonoBehaviour{
         SetOpenBuildUpdate(build);
     }
 
-    private void ClosePanel(){
+    public void ClosePanel(){
         _panel.localScale = Vector3.zero;
+        EventManager.PermissionRaycastInputController(true);
     }
 
     private void SetOpenBuildUpdate(Build build){
-        for(int i = 0; i < build.UpdateBuilds.Length; i++){
-            _updateInformationUIs[i].InitializeUpdateInformation(build.UpdateBuilds[i], build);
-        }
+        _updateInformationUIs[0].InitializeUpdateInformation(build.SelectedUpdateBuild, build);
     }
 
     private void UpdateBuild(UpdateBuildSO updateBuildSO)

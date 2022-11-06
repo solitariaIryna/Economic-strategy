@@ -1,5 +1,6 @@
 ﻿public enum TypeBuilds
 {
     Sawmill,
-    Farm
+    Farm,
+    Smeltery
 }

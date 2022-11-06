@@ -116,17 +116,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _name: Sawmill
+  _itemCreate: {fileID: 11400000, guid: b8068705474e63143b38ce8b720efa8f, type: 2}
   _UIBuildController: {fileID: 8207698789576860777}
-  _updateBuilds:
-  - {fileID: 11400000, guid: 2d1ff41604265d74686d16b1df9777ad, type: 2}
-  _selectedUpdateBuild: {fileID: 0}
+  _updateBuilds: []
+  _selectedUpdateBuild: {fileID: 11400000, guid: 2d1ff41604265d74686d16b1df9777ad,
+    type: 2}
   _craftSO: {fileID: 11400000, guid: f81f205e72f1fdc42b8a3353bdbd3c88, type: 2}
   _resources: 0
   _resource:
     _resources: 0
     _value: 0
   _countTick: 5
-  _timeCreateResource: 1
+  _timeCreateResource: 3
   _isCheckValueResource: 0
 --- !u!1001 &4553586335162798428
 PrefabInstance:

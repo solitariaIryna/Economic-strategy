@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _nameModel: Sawmill
   _build: {fileID: -7119601224959234360, guid: 21d42ff46295d4a4da6da6d0d1b33631, type: 3}
-  _cost: 10
+  _cost: 50
   _sprite: {fileID: 21300000, guid: a32d1840a3f0b2948bc6b161546f31b0, type: 3}
   _typeBuilds: 0
   _resources: 0

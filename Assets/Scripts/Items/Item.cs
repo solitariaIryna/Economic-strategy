@@ -11,8 +11,11 @@ public class Item : ScriptableObject
 	public string ID { get { return id; } }
 	public string ItemName;
 	public Sprite Icon;
-	[Range(1,999)]
+	[Range(1, 10000)]
+	public int Value = 0;
 	public int MaximumStacks = 1;
+	public Resources TypeItem;
+	public int Price;
 
 	protected static readonly StringBuilder sb = new StringBuilder();
 
@@ -26,8 +29,11 @@ public class Item : ScriptableObject
 
 	public virtual Item GetCopy()
 	{
-		return this;
+		return Instantiate(this);
 	}
+
+
+
 
 	public virtual void Destroy()
 	{

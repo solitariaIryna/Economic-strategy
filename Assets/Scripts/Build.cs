@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Build : MonoBehaviour{
     [SerializeField] private string _name;
+    [SerializeField] private Item _itemCreate;
     [SerializeField] private UIBuildController _UIBuildController;
     [SerializeField] private UpdateBuildSO[] _updateBuilds;
     [SerializeField] private UpdateBuildSO _selectedUpdateBuild;
@@ -22,8 +23,11 @@ public class Build : MonoBehaviour{
 
 
     public UpdateBuildSO[] UpdateBuilds { get => _updateBuilds; set => _updateBuilds = value; }
+    public UpdateBuildSO SelectedUpdateBuild { get => _selectedUpdateBuild; }
+
     private void CreateValueResource(){
         _resource = new Resource(_craftSO.CreateResource[0].Resources, _countTick);
+        _itemCreate.Value = _countTick;
         _timerCreateResource = 0f;
     }
 
@@ -32,6 +36,7 @@ public class Build : MonoBehaviour{
         _UIBuildController.SetNameBuild(_name);
         _UIBuildController.SetResourceData(_craftSO.ImageResource, _countTick);
         _UIBuildController.SetProgressBarData(_timeCreateResource);
+        _UIBuildController.SetUpgradeData(SelectedUpdateBuild.Image, SelectedUpdateBuild.LevelUpdate);
     }
     public virtual Resource GetResource(){
         return _resource;
@@ -45,6 +50,8 @@ public class Build : MonoBehaviour{
             _timerCreateResource = 0f;
             Storage.instance.AddResources(_resource);
             EventManager.CreateResource();
+            EventManager.AddItemToInventory(_itemCreate);
+            _itemCreate.Value = _countTick;
             //OnCreateResource?.Invoke(_resource);
         }
         _UIBuildController.ChangeProgressCreateResource(_timerCreateResource);
@@ -53,17 +60,18 @@ public class Build : MonoBehaviour{
     public virtual void UpdateOpen(UpdateBuildSO updateBuildSO){
         _selectedUpdateBuild = updateBuildSO;
         CalculationResource();
-        _UIBuildController.SetUpgradeData(_selectedUpdateBuild.Image, _selectedUpdateBuild.LevelUpdate);
+        _UIBuildController.SetUpgradeData(SelectedUpdateBuild.Image, SelectedUpdateBuild.LevelUpdate);
     }
 
     public virtual void CalculationResource(){
-        for (int i = 0; i < _selectedUpdateBuild.SettingUpdates.Count; i++){
-            if (_selectedUpdateBuild.SettingUpdates[i]._typeEffectUpdate == TypeEffectUpdate.CountCreate){
-                _resource.Value = _resource.Value + (int)_selectedUpdateBuild.SettingUpdates[i]._value;
+        for (int i = 0; i < SelectedUpdateBuild.SettingUpdates.Count; i++){
+            if (SelectedUpdateBuild.SettingUpdates[i]._typeEffectUpdate == TypeEffectUpdate.CountCreate){
+                _resource.Value = _resource.Value + (int)SelectedUpdateBuild.SettingUpdates[i]._value;
+                _itemCreate.Value = _resource.Value;
             }
 
-            if(_selectedUpdateBuild.SettingUpdates[i]._typeEffectUpdate == TypeEffectUpdate.SpeedCreate){
-                _timeCreateResource = _timeCreateResource - (_timeCreateResource / 100f) * _selectedUpdateBuild.SettingUpdates[i]._value;
+            if(SelectedUpdateBuild.SettingUpdates[i]._typeEffectUpdate == TypeEffectUpdate.SpeedCreate){
+                _timeCreateResource = _timeCreateResource - (_timeCreateResource / 100f) * SelectedUpdateBuild.SettingUpdates[i]._value;
             }
         }
         _UIBuildController.SetResourceData(_craftSO.ImageResource, _resource.Value);

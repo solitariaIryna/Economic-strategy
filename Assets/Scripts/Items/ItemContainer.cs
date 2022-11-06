@@ -5,7 +5,7 @@ using UnityEngine;
 public abstract class ItemContainer : MonoBehaviour, IItemContainer
 {
 	public List<ItemSlot> ItemSlots;
-
+	[SerializeField] private RectTransform panel;
 	public event Action<BaseItemSlot> OnPointerEnterEvent;
 	public event Action<BaseItemSlot> OnPointerExitEvent;
 	public event Action<BaseItemSlot> OnRightClickEvent;
@@ -14,15 +14,15 @@ public abstract class ItemContainer : MonoBehaviour, IItemContainer
 	public event Action<BaseItemSlot> OnDragEvent;
 	public event Action<BaseItemSlot> OnDropEvent;
 
-	protected virtual void OnValidate()
-	{
-		GetComponentsInChildren(includeInactive: true, result: ItemSlots);
-	}
+	//protected virtual void OnValidate()
+	//{
+	//	GetComponentsInChildren(includeInactive: true, result: ItemSlots);
+	//}
 
-	protected virtual void Awake()
-	{
-		for (int i = 0; i < ItemSlots.Count; i++)
-		{
+	protected virtual void Awake(){
+		EventManager.OnAddItemToInventory += AddItem;
+		EventManager.OnSellResource += RemoveItem;
+		for (int i = 0; i < ItemSlots.Count; i++){
 			ItemSlots[i].OnPointerEnterEvent += slot => EventHelper(slot, OnPointerEnterEvent);
 			ItemSlots[i].OnPointerExitEvent += slot => EventHelper(slot, OnPointerExitEvent);
 			ItemSlots[i].OnRightClickEvent += slot => EventHelper(slot, OnRightClickEvent);
@@ -33,14 +33,19 @@ public abstract class ItemContainer : MonoBehaviour, IItemContainer
 		}
 	}
 
-	private void EventHelper(BaseItemSlot itemSlot, Action<BaseItemSlot> action)
-	{
+    private void OnDisable(){
+		EventManager.OnAddItemToInventory -= AddItem;
+		EventManager.OnSellResource -= RemoveItem;
+	}
+
+
+
+    private void EventHelper(BaseItemSlot itemSlot, Action<BaseItemSlot> action){
 		if (action != null)
 			action(itemSlot);
 	}
 
-	public virtual bool CanAddItem(Item item, int amount = 1)
-	{
+	public virtual bool CanAddItem(Item item, int amount = 1){
 		int freeSpaces = 0;
 
 		foreach (ItemSlot itemSlot in ItemSlots)
@@ -53,28 +58,23 @@ public abstract class ItemContainer : MonoBehaviour, IItemContainer
 		return freeSpaces >= amount;
 	}
 
-	public virtual bool AddItem(Item item)
-	{
+	public virtual void AddItem(Item item){
 		for (int i = 0; i < ItemSlots.Count; i++)
 		{
-			if (ItemSlots[i].CanAddStack(item))
-			{
-				ItemSlots[i].Item = item;
-				ItemSlots[i].Amount++;
-				return true;
+			if(ItemSlots[i].Item == null){
+				ItemSlots[i].Item = item.GetCopy();
+				ItemSlots[i].Amount = ItemSlots[i].Item.Value;
+				break;
 			}
-		}
+            else{
+				if(ItemSlots[i].Item.TypeItem == item.TypeItem){
+					ItemSlots[i].Item.Value += item.Value;
+					ItemSlots[i].Amount = ItemSlots[i].Item.Value;
+					break;
+				}
 
-		for (int i = 0; i < ItemSlots.Count; i++)
-		{
-			if (ItemSlots[i].Item == null)
-			{
-				ItemSlots[i].Item = item;
-				ItemSlots[i].Amount++;
-				return true;
-			}
+            }
 		}
-		return false;
 	}
 
 	public virtual bool RemoveItem(Item item)
@@ -104,6 +104,8 @@ public abstract class ItemContainer : MonoBehaviour, IItemContainer
 		return null;
 	}
 
+	
+
 	public virtual int ItemCount(string itemID)
 	{
 		int number = 0;
@@ -128,6 +130,29 @@ public abstract class ItemContainer : MonoBehaviour, IItemContainer
 			}
 			ItemSlots[i].Item = null;
 			ItemSlots[i].Amount = 0;
+		}
+	}
+
+	public void CloseWindow(){
+		panel.localScale = Vector3.zero;
+		EventManager.PermissionRaycastInputController(true);
+	}
+
+	public void OpenWindow(){
+		panel.localScale = Vector3.one;
+		EventManager.PermissionRaycastInputController(false);
+	}
+
+	public void RemoveItem(Item itemSelected, int count)
+	{
+		for (int i = 0; i < ItemSlots.Count; i++)
+		{
+			if (ItemSlots[i].Item == itemSelected)
+			{
+				ItemSlots[i].Item.Value -= count;
+				ItemSlots[i].Amount = ItemSlots[i].Item.Value;
+				break;
+			}
 		}
 	}
 }
