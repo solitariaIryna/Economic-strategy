@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -378,6 +378,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Panel (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7128512137893620998, guid: 77ef44ef8264cbe4b88c1893c23b3bfc,
+        type: 3}
+      propertyPath: m_Text
+      value: Build
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 77ef44ef8264cbe4b88c1893c23b3bfc, type: 3}
@@ -5047,6 +5052,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Panel (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 7128512137893620998, guid: 77ef44ef8264cbe4b88c1893c23b3bfc,
+        type: 3}
+      propertyPath: m_Text
+      value: Build
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 77ef44ef8264cbe4b88c1893c23b3bfc, type: 3}
 --- !u!224 &1477758839 stripped
@@ -8260,6 +8270,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Panel
+      objectReference: {fileID: 0}
+    - target: {fileID: 7128512137893620998, guid: 77ef44ef8264cbe4b88c1893c23b3bfc,
+        type: 3}
+      propertyPath: m_Text
+      value: Build
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 77ef44ef8264cbe4b88c1893c23b3bfc, type: 3}
